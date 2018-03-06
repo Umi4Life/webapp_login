@@ -40,8 +40,6 @@ public class HomeServlet extends HttpServlet implements Routable {
         boolean authorized = securityService.isAuthorized(request);
 
         if (authorized) {
-            // do MVC in here
-
             response.sendRedirect("/users");
         } else {
             response.sendRedirect("/login");
