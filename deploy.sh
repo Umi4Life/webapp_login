@@ -3,4 +3,4 @@
 mvn clean
 mvn package
 sudo iptables -A PREROUTING -t nat -p tcp --dport 80 -j REDIRECT --to-ports 8080
-sh target/bin/webapp
+java -jar target/login-webapp-1.0-SNAPSHOT.jar
