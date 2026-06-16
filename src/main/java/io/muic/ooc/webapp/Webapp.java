@@ -17,7 +17,8 @@ public class Webapp {
         File docBase = new File("src/main/webapp/");
         docBase.mkdirs();
         Tomcat tomcat = new Tomcat();
-        //tomcat.setPort(8082);
+        int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "8080"));
+        tomcat.setPort(port);
 
         SecurityService securityService = new SecurityService();
         ServletRouter servletRouter = new ServletRouter();

@@ -7,10 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySQL {
-    private static final String dbUrl = "jdbc:mysql://localhost:3306/webapp_login?useSSL=false";
-    private static final String dbUser = "muic";
-    private static final String dbPassword = "ooc";
+    private static final String dbHost = env("DB_HOST", "localhost");
+    private static final String dbPort = env("DB_PORT", "3306");
+    private static final String dbName = env("DB_NAME", "webapp_login");
+    private static final String dbUser = env("DB_USER", "muic");
+    private static final String dbPassword = env("DB_PASSWORD", "ooc");
+    private static final String dbUrl = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?useSSL=false";
     private static final String dbTable = "credentials";
+
+    private static String env(String key, String defaultValue) {
+        String value = System.getenv(key);
+        return (value == null || value.isEmpty()) ? defaultValue : value;
+    }
     private static Connection connection = null;
     private static PreparedStatement preparedStatement;
 
